@@ -1,0 +1,38 @@
+#!/bin/sh
+
+echo "=========================================================================="
+echo "Install nodejs 14"
+sudo curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
+sudo yum install nodejs
+echo "Install nodejs 14 success!!"
+
+echo "=========================================================================="
+echo "Install yarn"
+sudo npm install -g yarn
+echo "Install yarn success!!"
+
+
+echo "=========================================================================="
+echo "Install pm2"
+sudo npm install -g pm2
+pm2 startup
+echo "Install pm2 success!!"
+
+
+echo "=========================================================================="
+echo "Install Vips"
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo yum install yum-utils
+sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+sudo yum-config-manager --enable remi
+sudo yum install vips vips-devel vips-tools
+echo "Install Vips success!!"
+
+
+echo "=========================================================================="
+echo "Install Redis"
+sudo yum install epel-release
+sudo yum install redis -y
+sudo systemctl start redis.service
+sudo systemctl enable redis
+echo "Install Redis success!!"
